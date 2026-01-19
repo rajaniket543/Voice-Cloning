@@ -1,0 +1,22 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Flutter
+.build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Audio / ML
+uploads/
+generated_audio/
+voice_embeddings/
+*.wav
+*.mp3
+
+# OS
+.DS_Store
+
