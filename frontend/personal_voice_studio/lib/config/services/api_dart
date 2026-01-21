@@ -1,0 +1,20 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import '../config/api_config.dart';
+
+class ApiService {
+
+  Future<Map<String, dynamic>> registerVoice(File audio, String userId) async {
+    final uri = Uri.parse("${ApiConfig.baseUrl}/api/voice-clone/register");
+
+    final request = http.MultipartRequest("POST", uri)
+      ..fields["user_id"] = userId
+      ..files.add(await http.MultipartFile.fromPath("audio", audio.path));
+
+    final response = await request.send();
+    final body = await response.stream.bytesToString();
+
+    return jsonDecode(body);
+  }
+}
