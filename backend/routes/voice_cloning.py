@@ -1,8 +1,10 @@
 from flask import Blueprint, request, jsonify
 import os
 import uuid
+from models.tts_engine import TTSEngine
 
 voice_clone_bp = Blueprint("voice_clone", __name__)
+tts_engine = TTSEngine()
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -31,15 +33,16 @@ def register_voice():
 @voice_clone_bp.route("/synthesize", methods=["POST"])
 def synthesize():
     data = request.get_json()
-
     text = data.get("text")
     voice_id = data.get("voice_id")
+    language = data.get("language", "en")
 
     if not text or not voice_id:
         return jsonify({"error": "text and voice_id required"}), 400
 
+    output = tts_engine.synthesize(text, voice_id, language)
+
     return jsonify({
         "success": True,
-        "message": "Synthesis placeholder",
-        "audio_path": voice_id
+        "audio_path": output
     })

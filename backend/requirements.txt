@@ -1,8 +1,9 @@
 flask
 flask-cors
-coqui-tts
-librosa
 torch
 torchaudio
+coqui-tts
+librosa
+numpy
 python-dotenv
 python-multipart
