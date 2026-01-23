@@ -1,0 +1,8 @@
+<key>NSMicrophoneUsageDescription</key>
+<string>This app needs microphone access to record your voice.</string>
+
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
